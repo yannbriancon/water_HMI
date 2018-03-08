@@ -1,0 +1,49 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  color: #333333;
+  font-weight: 400;
+  font-size: 15px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+p { margin: 0 0 20px; }
+
+h1,
+h2,{
+  margin: 10px 0;
+  font-weight: 500;
+  line-height: 40px;
+  color: inherit;
+  text-align: center;
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 22px; }
+
+div.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px;   /* We'll override this later */
+    background-color: teal;
+    margin-right: 2px;
+}
+
+.d3 {
+    margin: auto;
+}
+
+.d3_container {
+    width: 600px;
+    height: 300px;
+    display: flex;    
+    background-color: #ffff99;
+}
