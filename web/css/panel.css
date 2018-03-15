@@ -44,6 +44,47 @@ div.bar {
 .d3_container {
     width: 600px;
     height: 300px;
-    display: flex;    
-    background-color: #ffff99;
+    display: flex;
+    border-style: solid;
+    border-width: 5px;
+    background-color: white;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+#search, #selection, #application {
+    display: block;
+    margin: 30px;
+}
+
+#search p{
+    display: inline;
+}
+
+.component_text {
+   border:none;
+   outline:none;
+   text-align: right;
+   width: 45px;
+}
+
+.component_div {
+   border:solid 1px #d5d5d5;
+   padding: 0 0 0 5px;
+   display: inline-block;
+}
+
+#input_text {
+    width: 390px;
+}
+
+#submit_form {
+    width: 120px;
+}
+
+.water_country {
+    text-align: left;
 }

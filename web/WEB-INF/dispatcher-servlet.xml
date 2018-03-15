@@ -19,7 +19,8 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="index.water">indexController</prop>
+                <prop key="panel.water">panelController</prop>
+                <prop key="search.water">searchController</prop>
                 <prop key="spec.water">specController</prop>
             </props>
         </property>
@@ -31,10 +32,16 @@
           p:suffix=".jsp" />
 
     <!--
-    The index controller.
+    The panel controller.
     -->
-    <bean name="indexController"
-          class="org.centrale.anrec.controller.IndexController"/>
+    <bean name="panelController"
+          class="org.centrale.anrec.controller.PanelController"/>
+    
+    <!--
+    The search controller.
+    -->
+    <bean name="searchController"
+          class="org.centrale.anrec.controller.SearchController"/>
     
     <!--
     The specialized controller.
