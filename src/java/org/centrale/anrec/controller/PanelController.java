@@ -34,7 +34,6 @@ public class PanelController {
         ModelAndView result = new ModelAndView("panel");
         Collection<Water> list = theItemManager.page();
         Collection<Water> countries = theItemManager.findByDistinctCountry();
-        String[] l = {"Tous les minéraux", "Calcium", "Magnesium", "Sodium", "Potassium", "Sulfate", "Nitrate", "Bicarbonate", "Chlore"};
 
         ObjectMapper mapper = new ObjectMapper();
         String json_list = "";
@@ -45,6 +44,19 @@ public class PanelController {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
+        
+        String error = request.getParameter("error");
+        if(error != null){
+            if(error.matches("\\d{1}")){
+                int error_val = Integer.parseInt(error);
+                if(error_val == 1){
+                    result.addObject("error", "La recherche faite n'est pas valide");
+                }
+                else if(error_val == 1){
+                    result.addObject("error", "La recherche n'a retournée aucun résultat");
+                }
+            }
+        }
 
         result.addObject("waters", json_list);
         result.addObject("countries", json_countries);

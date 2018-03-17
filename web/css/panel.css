@@ -55,7 +55,7 @@ a {
     text-decoration: none;
 }
 
-#search, #selection, #application {
+#search, #selection, #application{
     display: block;
     margin: 30px;
 }
@@ -87,4 +87,11 @@ a {
 
 .water_country {
     text-align: left;
+}
+
+#new_search {
+    text-align: center;
+    padding: auto 10px;
+    display: inline;
+    margin: 30px;
 }

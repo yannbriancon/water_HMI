@@ -26,8 +26,8 @@
 </head>
 <body>
     <form:form method="POST" action="panel.water">
-        <div id="new_search">
-            <input id="submit_form" type="submit" value="Faire une nouvelle recherche">
+        <div id="application">
+            <input id="new_search" type="submit" value="Nouvelle recherche">
         </div>
     </form:form>
     <div id="coverflow">

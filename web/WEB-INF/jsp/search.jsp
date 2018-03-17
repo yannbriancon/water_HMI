@@ -29,8 +29,20 @@
         <div id="search">
             <p>Rechercher par nom : </p>
             <input id="input_text" type="text" name="name" value="${name}" maxlength="30">
+            <input type="hidden" name="country" value="${country}">
+            <input type="hidden" name="component1_name" value="${component1_name}">
+            <input type="hidden" name="component1_order" value="${component1_order}">
+            <input type="hidden" name="component1_mass" value="${component1_mass}">
+            <input type="hidden" name="component2_name" value="${component2_name}">
+            <input type="hidden" name="component2_order" value="${component2_order}">
+            <input type="hidden" name="component2_mass" value="${component2_mass}">
             <input id="submit_form" type="submit" value="Rechercher">
         </div>
+    </form:form>
+    <form:form method="GET" action="panel.water">
+    <div id="application">
+        <input id="new_search" type="submit" value="Nouvelle recherche">
+    </div>
     </form:form>
     <div id="coverflow">
         <ul class="flip-items">
@@ -76,7 +88,7 @@
             
         
         //Add the countries in the selection list
-        var countries = ${countries};
+        /*var countries = $/{countries};
             
         d3.selectAll("#select_country").selectAll()
                 .data(countries)
@@ -103,6 +115,7 @@
                 .html(function(d) {
                     return d['name']; 
                 })
+                */
     </script>
 
     <script>

@@ -6,6 +6,7 @@
 package org.centrale.anrec.manager;
 
 import java.util.Collection;
+import java.util.HashMap;
 import org.centrale.anrec.items.Water;
 
 /**
@@ -20,4 +21,9 @@ public interface ItemManager {
     public Collection<Water> findByWaterId(int waterId);
     
     public Collection<Water> findByDistinctCountry();
+    
+    public boolean getParameterValues(HashMap<String, String> parameters, HashMap<String, Integer> valid_parameters, HashMap<String, String> response);
+        
+    public Collection<Water> findByParameters(HashMap<String, String> parameters, HashMap<String, Integer> valid_parameters);
+        
 }

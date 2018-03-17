@@ -32,9 +32,9 @@
         </div>
         <div id="selection">
             <select id="select_country" name="country">
-                <option value="-1">Country</option>
+                <option value="-1">Pays</option>
             </select>
-            <select class="select_component" name="component1">
+            <select class="select_component" name="component1_name">
                 <option value="-1">Composant</option>
             </select>
             <select name="component1_order">
@@ -45,7 +45,7 @@
                 <input class="component_text" type="text" name="component1_mass" value="" maxlength="4">
                 g/L
             </div>
-            <select class="select_component" name="component2">
+            <select class="select_component" name="component2_name">
                 <option value="-1">Composant</option>
             </select>
             <select name="component2_order">
@@ -119,9 +119,9 @@
                 })
                 
         //Add the possible component filters in the component selection lists
-        var components = [{"id":1, "name":"Tous les minéraux"}, {"id":2, "name":"Calcium"}, {"id":3, "name":"Magnesium"}, 
-            {"id":4, "name":"Sodium"}, {"id":5, "name":"Potassium"}, {"id":6, "name":"Sulfate"}, {"id":7, "name":"Nitrate"}, 
-            {"id":8, "name":"Bicarbonate"}, {"id":9, "name":"Chlore"}];
+        var components = [{"id":0, "name":"Tous les minéraux"}, {"id":1, "name":"Calcium"}, {"id":2, "name":"Magnesium"}, 
+            {"id":3, "name":"Sodium"}, {"id":4, "name":"Potassium"}, {"id":5, "name":"Sulfate"}, {"id":6, "name":"Nitrate"}, 
+            {"id":7, "name":"Bicarbonate"}, {"id":8, "name":"Chlore"}];
         d3.selectAll(".select_component").selectAll()
                 .data(components)
                 .enter()
