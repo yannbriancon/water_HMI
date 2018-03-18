@@ -32,57 +32,19 @@
                 <input id="new_search" type="submit" value="Nouvelle recherche">
             </div>
         </form:form>
-        <!-- <div id="coverflow">
-              <ul class="flip-items">
-              </ul>
-          </div>
-          
-          
-          <script id="d3" type="text/javascript">
-              //Add the waters in the coverflow
-              var dataset = ${waters};
-              
-              var li = d3.selectAll(".flip-items").selectAll()
-                                      .data(dataset)
-                                      .enter()
-                                      .append("li")
-                                      .attr("data-flip-title", function(d) {
-                                          return d['name'];   
-                                      })
-              
-              var a = li.append("a")
-                      .attr("href", function(d) {
-                          var url = "spec.water?id=" + String(d['waterId']);
-                          return url;   
-                      })
-                      
-              var div = a.append("div")
-                  .attr("class", "d3_container")
-                  .append("div")
-                  .attr("class", "d3")
-                  
-              div.append("h1")
-                  .html(function(d) {
-                      return d['name']; 
-                  })
-                  .append("p")
-                  .attr("class", "water_country")
-                  .html(function(d) {
-                      return d['country']; 
-                  })
-                  
-          </script>
-      
-          <script>
-              var coverflow = $("#coverflow").flipster();
-          </script>-->
+        
         
         <script id="d3" type="text/javascript">
             var dataset = ${waters};
               
            d3.select("body")
                    .append("h1")
-                   .text(dataset[0].name);
+                   .text(dataset[0].name + "  -  " + dataset[0].country);
+           
+           d3.select("body")
+                   .append("p")
+                   .text("Valeurs en mg/L")
+                   .style("color", "#cccc43");;
 
         </script>
 
@@ -94,13 +56,13 @@
             var pie = new d3pie("pieChart", {
                 "header": {
                     "title": {
-                        "text": "Teneur totale :",
-                        "fontSize": 20,
+                        "text": "Teneur totale en sels minéraux",
+                        "fontSize": 12,
                         "font": "courier"
                     },
                     "subtitle": {
-                        "text": data[0].calcium + data[0].magnesium + data[0].sodium + data[0].potassium + data[0].nitrate + data[0].sulfate + data[0].bicarbonate + data[0].chlore ,
-                        "color": "#999999",
+                        "text": data[0].calcium + data[0].magnesium + data[0].sodium + data[0].potassium,
+                        "color": "#cccc43",
                         "fontSize": 10,
                         "font": "courier"
                     },
@@ -108,11 +70,11 @@
                     "titleSubtitlePadding": 10
                 },
                 "footer": {
-                    "text": "Les valeurs sont données à titre indicatif, il se peut que les réelles teneur en sels minéraux diffèrent.",
+                    "text": "Les valeurs sont données à titre indicatif, il se peut que les réelles teneurs en sels minéraux diffèrent.",
                     "color": "#999999",
                     "fontSize": 10,
                     "font": "open sans",
-                    "location": "bottom-left"
+                    "location": "bottom-center"
                 },
                 "size": {
                     "canvasWidth": 590,
@@ -125,42 +87,42 @@
                         {
                             "label": "Calcium",
                             "value": data[0].calcium,
-                            "color": "#333333"
+                            "color": "#1565c0"
                         },
                         {
                             "label": "Magnésium",
                             "value": data[0].magnesium,
-                            "color": "#444444"
+                            "color": "#1976d2"
                         },
                         {
                             "label": "Sodium",
                             "value": data[0].sodium,
-                            "color": "#555555"
+                            "color": "#1e88e5"
                         },
                         {
                             "label": "Potassium",
                             "value": data[0].potassium,
-                            "color": "#666666"
+                            "color": "#2196f3"
                         },
                         {
                             "label": "Nitrate",
                             "value": data[0].nitrate,
-                            "color": "#777777"
+                            "color": "#42a5f5"
                         },
                         {
                             "label": "Sulfate",
                             "value": data[0].sulfate,
-                            "color": "#888888"
+                            "color": "#64b5f6"
                         },
                         {
                             "label": "Bicarbonate",
                             "value": data[0].bicarbonate,
-                            "color": "#999999"
+                            "color": "#bbdefb"
                         },
                         {
                             "label": "Chlore",
                             "value": data[0].chlore,
-                            "color": "#cb2121"
+                            "color": "#90caf9"
                         }
                     ]
                 },
@@ -173,7 +135,7 @@
                         "fontSize": 11
                     },
                     "percentage": {
-                        "color": "#999999",
+                        "color": "#1b5e20",
                         "fontSize": 11,
                         "decimalPlaces": 0
                     },
