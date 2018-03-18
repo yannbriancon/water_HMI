@@ -66,8 +66,8 @@ public class SearchController {
             } catch (Exception e) {
                     e.printStackTrace();
             }
-            result.addObject("parameters", json_choices);
             result.addObject("error", 1);
+            result.addObject("choices", json_choices);
         } 
         else if(choices.isEmpty()){
             result.setViewName("redirect: panel.water");
@@ -81,8 +81,8 @@ public class SearchController {
             } catch (Exception e) {
                     e.printStackTrace();
             }
-            result.addObject("parameters", json_choices);
             result.addObject("error", 2);
+            result.addObject("choices", json_choices);
         }
         else if(list.size()==1){
             Water w = (Water) list.toArray()[0];
@@ -169,7 +169,6 @@ public class SearchController {
         else{
             response.put("country", -1);
             form_valid = false;
-            return form_valid;
         }
         
         Boolean[] component1 = checkValidComponent(
@@ -179,9 +178,10 @@ public class SearchController {
         if(!component1[0]){
             form_valid = false;
             response.put("component1", -1);
-            return form_valid;
         }
-        response.put("component1", (component1[1]) ? 1:0);
+        else{
+            response.put("component1", (component1[1]) ? 1:0);            
+        }
         
         Boolean[] component2 = checkValidComponent(
                                     parameters.get("component2_name"),
@@ -190,9 +190,10 @@ public class SearchController {
         if(!component2[0]){
             form_valid = false;
             response.put("component2", -1);
-            return form_valid;
         }
-        response.put("component2", (component2[1]) ? 1:0);
+        else{
+            response.put("component2", (component2[1]) ? 1:0);            
+        }
         
         return form_valid;
     } 

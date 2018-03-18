@@ -61,6 +61,7 @@
             <input id="submit_form" type="submit" value="Rechercher">
         </div>
     </form:form>
+    <div id="error"></div>
     <div id="coverflow">
         <ul class="flip-items">
         </ul>
@@ -100,9 +101,14 @@
                 return d['country']; 
             })
             
-            
-        
-            
+        //Add error message if it exists
+        var error = ${error};
+        if(error!==""){
+            d3.select("#error")
+                .append("p")
+                .attr("id", "error_msg")
+                .html(${error})
+        }
         
         //Add the countries in the selection list
         var countries = ${countries};
