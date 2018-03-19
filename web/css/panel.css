@@ -1,7 +1,7 @@
 html,
 body {
   margin: 0;
-  padding: 0;
+  padding-top: 20px;
   height: 100%;
 }
 
@@ -60,7 +60,7 @@ a {
     margin: 30px;
 }
 
-#application{
+#search, #application{
     display: block;
     margin-bottom: 30px;
 }

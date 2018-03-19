@@ -153,14 +153,14 @@ public class ItemManagerImpl implements ItemManager {
                     msg += "Minimum : ";
                     msg += parameters.get("component1_mass") + " g/L  |";
                     msg += "  Maximum : ";
-                    msg += parameters.get("component2_mass") + " g/L |";
+                    msg += parameters.get("component2_mass") + " g/L";
                 }
                 else{
                     // Component1 is set to Maximum and component2 to Minimum
                     msg += "Minimum : ";
                     msg += parameters.get("component2_mass") + " g/L  |";
                     msg += "  Maximum : ";
-                    msg += parameters.get("component1_mass") + " g/L |";
+                    msg += parameters.get("component1_mass") + " g/L";
                 }                    
 
                 response.put(l[Integer.parseInt(parameters.get("component1_name"))], msg);
