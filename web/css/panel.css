@@ -55,9 +55,14 @@ a {
     text-decoration: none;
 }
 
-#search, #selection, #application{
+#search, #selection{
     display: block;
     margin: 30px;
+}
+
+#application{
+    display: block;
+    margin-bottom: 30px;
 }
 
 #search p{
@@ -93,5 +98,22 @@ a {
     text-align: center;
     padding: auto 10px;
     display: inline;
-    margin: 30px;
+}
+
+#table_choices{
+    display: block;
+    text-align: center;
+}
+
+table{
+    margin: 0 auto 30px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 5px;
 }

@@ -6,6 +6,8 @@
 package org.centrale.anrec.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,10 +42,10 @@ public class PanelController {
             if(error.matches("\\d{1}")){
                 int error_val = Integer.parseInt(error);
                 if(error_val == 1){
-                    error = "La recherche faite n'est pas valide";
+                    error = "La recherche faite n'est pas valide : ";
                 }
                 else if(error_val == 2){
-                    error = "La recherche n'a retournée aucun résultat";
+                    error = "La recherche ci-dessous n'a retournée aucun résultat :";
                 }
                 else{
                     result.setViewName("redirect: panel.water");
@@ -52,6 +54,14 @@ public class PanelController {
         }
         else{
             error = "";
+        }
+        
+        String json_choices = request.getParameter("choices");
+        if(json_choices == null){
+            json_choices = "{}";
+        }
+        else{
+            json_choices = URLDecoder.decode(json_choices, "UTF-8");
         }
         
         ObjectMapper mapper = new ObjectMapper();
@@ -66,6 +76,7 @@ public class PanelController {
 		e.printStackTrace();
 	}
         
+        result.addObject("choices", json_choices);
         result.addObject("error", json_error);
         result.addObject("waters", json_list);
         result.addObject("countries", json_countries);

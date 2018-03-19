@@ -6,9 +6,11 @@
 package org.centrale.anrec.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +45,8 @@ public class SearchController {
             HttpServletResponse response) throws Exception{
         ItemManager theItemManager = ItemManagerImpl.getInstance();
         HashMap<String, String> parameters = SearchController.getParameters(request);
-        HashMap<String, Integer> valid_parameters = new HashMap<>();
-        HashMap<String, String> choices = new HashMap<>();
+        HashMap<String, Integer> valid_parameters = new LinkedHashMap<>();
+        HashMap<String, String> choices = new LinkedHashMap<>();
         boolean prevalid = SearchController.checkForm(parameters, valid_parameters);
         
         boolean valid = (theItemManager.getParameterValues(parameters, valid_parameters, choices) && prevalid);
@@ -53,7 +55,6 @@ public class SearchController {
         if(valid && !(choices.isEmpty())){
             list = theItemManager.findByParameters(parameters, valid_parameters);
         }
-        
         
         ModelAndView result = new ModelAndView();
         
@@ -67,7 +68,7 @@ public class SearchController {
                     e.printStackTrace();
             }
             result.addObject("error", 1);
-            result.addObject("choices", json_choices);
+            result.addObject("choices", URLEncoder.encode(json_choices, "UTF-8"));
         } 
         else if(choices.isEmpty()){
             result.setViewName("redirect: panel.water");
@@ -82,7 +83,7 @@ public class SearchController {
                     e.printStackTrace();
             }
             result.addObject("error", 2);
-            result.addObject("choices", json_choices);
+            result.addObject("choices", URLEncoder.encode(json_choices, "UTF-8"));
         }
         else if(list.size()==1){
             Water w = (Water) list.toArray()[0];
@@ -121,8 +122,8 @@ public class SearchController {
      * @param request
      * @return 
      */
-    private static HashMap<String, String> getParameters(HttpServletRequest request){
-        HashMap<String, String> response = new HashMap<>();
+    private static LinkedHashMap<String, String> getParameters(HttpServletRequest request){
+        LinkedHashMap<String, String> response = new LinkedHashMap<>();
         String name = request.getParameter("name");
         response.put("name", name);
         
