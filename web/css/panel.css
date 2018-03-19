@@ -38,11 +38,13 @@ div.bar {
 }
 
 #d3_header{
+    margin: 20px 30px;
     flex: 1;
 }
 
 #d3_header h1{
     margin: auto;
+    padding-bottom: 20px;
 }
 
 .d3_container {

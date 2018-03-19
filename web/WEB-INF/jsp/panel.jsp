@@ -22,6 +22,10 @@
     <script type="text/javascript" src="js/d3.v3.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.flipster.js"></script>
+    
+    
+    <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/panel.js"></script>
 
 </head>
 <body>
@@ -67,117 +71,6 @@
         <ul class="flip-items">
         </ul>
     </div>
-    
-    
-    <script id="d3" type="text/javascript">
-        //Add the waters in the coverflow
-        var dataset = ${waters};
-        
-        var li = d3.selectAll(".flip-items").selectAll()
-                                .data(dataset)
-                                .enter()
-                                .append("li")
-                                .attr("data-flip-title", function(d) {
-                                    return d['name'];   
-                                })
-        
-        var a = li.append("a")
-                .attr("href", function(d) {
-                    var url = "spec.water?id=" + String(d['waterId']);
-                    return url;   
-                })
-                
-        var d3_container = a.append("div")
-            .attr("class", "d3_container")
-        
-        var d3_header = d3_container.append("div")
-            .attr("id", "d3_header")
-    
-        d3_header.append("h1")
-            .html(function(d) {
-                return d['name']; 
-            })
-        
-        d3_header.append("p")
-            .attr("class", "water_country")
-            .html(function(d) {
-                return d['country']; 
-            })
-    
-        var d3_values = d3_container.append("div")
-            .attr("id", "d3_values")
-            
-      
-        d3_values.append("p")
-                .text("test");
-
-        //Add error message if it exists
-        var error = ${error};
-        if(error!==""){
-            d3.select("#error")
-                .append("p")
-                .attr("id", "error_msg")
-                .html(${error})
-        }
-        
-        //Add the countries in the selection list
-        var countries = ${countries};
-            
-        d3.selectAll("#select_country").selectAll()
-                .data(countries)
-                .enter()
-                .append("option")
-                .attr("value", function(d) {
-                    return String(d['waterId']);   
-                })
-                .html(function(d) {
-                    return d['country']; 
-                })
-                
-        //Add the possible component filters in the component selection lists
-        var components = [{"id":0, "name":"Tous les minéraux"}, {"id":1, "name":"Calcium"}, {"id":2, "name":"Magnesium"}, 
-            {"id":3, "name":"Sodium"}, {"id":4, "name":"Potassium"}, {"id":5, "name":"Sulfate"}, {"id":6, "name":"Nitrate"}, 
-            {"id":7, "name":"Bicarbonate"}, {"id":8, "name":"Chlore"}];
-        d3.selectAll(".select_component").selectAll()
-                .data(components)
-                .enter()
-                .append("option")
-                .attr("value", function(d) {
-                    return String(d['id']);   
-                })
-                .html(function(d) {
-                    return d['name']; 
-                })
-                
-        //Add table of the choices of the request
-        var choices = ${choices};
-        if(choices!=={}){
-            var table = d3.select("#table_choices")
-                        .append("table")
-                
-            var table_header = table.append("tr")
-                                .attr("id", "table_header")
-                        
-            var table_values = table.append("tr")
-                                .attr("id", "table_values")
-           
-            table_header.selectAll()
-                .data(d3.entries(choices))
-                .enter()
-                .append("th")
-                .html(function(d) {
-                    return unescape(d.key);
-                })
-                
-            table_values.selectAll()
-                .data(d3.entries(choices))
-                .enter()
-                .append("td")
-                .html(function(d) {
-                    return unescape(d.value); 
-                })
-        }
-    </script>
 
     <script>
         var coverflow = $("#coverflow").flipster();
