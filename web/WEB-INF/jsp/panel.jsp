@@ -61,6 +61,8 @@
             <input id="submit_form" type="submit" value="Rechercher">
         </div>
     </form:form>
+    <div id="error"></div>
+    <div id="table_choices"></div>
     <div id="coverflow">
         <ul class="flip-items">
         </ul>
@@ -100,9 +102,14 @@
                 return d['country']; 
             })
             
-            
-        
-            
+        //Add error message if it exists
+        var error = ${error};
+        if(error!==""){
+            d3.select("#error")
+                .append("p")
+                .attr("id", "error_msg")
+                .html(${error})
+        }
         
         //Add the countries in the selection list
         var countries = ${countries};
@@ -132,6 +139,35 @@
                 .html(function(d) {
                     return d['name']; 
                 })
+                
+        //Add table of the choices of the request
+        var choices = ${choices};
+        if(choices!=={}){
+            var table = d3.select("#table_choices")
+                        .append("table")
+                
+            var table_header = table.append("tr")
+                                .attr("id", "table_header")
+                        
+            var table_values = table.append("tr")
+                                .attr("id", "table_values")
+           
+            table_header.selectAll()
+                .data(d3.entries(choices))
+                .enter()
+                .append("th")
+                .html(function(d) {
+                    return unescape(d.key);
+                })
+                
+            table_values.selectAll()
+                .data(d3.entries(choices))
+                .enter()
+                .append("td")
+                .html(function(d) {
+                    return unescape(d.value); 
+                })
+        }
     </script>
 
     <script>

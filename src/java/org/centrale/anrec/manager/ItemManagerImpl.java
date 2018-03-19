@@ -115,56 +115,55 @@ public class ItemManagerImpl implements ItemManager {
         String[] l = {"Tous les minéraux", "Calcium", "Magnesium", "Sodium", "Potassium", "Sulfate", "Nitrate", "Bicarbonate", "Chlore"};
         
         // Case of twice the same component
-        if((valid_parameters.get("component1") == 1) && (valid_parameters.get("component2") == 1)){
-            if(parameters.get("component1_name").equals(parameters.get("component2_name"))){
-                // Same component
-                if(parameters.get("component1_order").equals(parameters.get("component2_order"))){
-                    String msg = "";
-                    
-                    double val1 = Double.parseDouble(parameters.get("component1_mass"));
-                    double val2 = Double.parseDouble(parameters.get("component2_mass"));
-                    
-                    if(parameters.get("component1_order").equals("0")){
-                        msg += "Minimum : ";
-                        if(val1>val2){
-                            msg += parameters.get("component1_mass") + " g/L";
-                        }
-                        else{
-                            msg += parameters.get("component2_mass") + " g/L";
-                        }
+        if((valid_parameters.get("component1") == 1) && (valid_parameters.get("component2") == 1) &&
+                (parameters.get("component1_name").equals(parameters.get("component2_name")))){
+            // Same component
+            if(parameters.get("component1_order").equals(parameters.get("component2_order"))){
+                String msg = "";
+
+                double val1 = Double.parseDouble(parameters.get("component1_mass"));
+                double val2 = Double.parseDouble(parameters.get("component2_mass"));
+
+                if(parameters.get("component1_order").equals("0")){
+                    msg += "Minimum : ";
+                    if(val1>val2){
+                        msg += parameters.get("component1_mass") + " g/L";
                     }
                     else{
-                        msg += "Maximum : ";
-                        if(val1<val2){
-                            msg += parameters.get("component1_mass") + " g/L";
-                        }
-                        else{
-                            msg += parameters.get("component2_mass") + " g/L";
-                        }
-                    }                    
-
-                    response.put(l[Integer.parseInt(parameters.get("component1_name"))], msg);
+                        msg += parameters.get("component2_mass") + " g/L";
+                    }
                 }
                 else{
-                    String msg = "";
-                                        
-                    if(parameters.get("component1_order").equals("0")){
-                        // Component1 is set to Minimum and component2 to Maximum
-                        msg += "Minimum : ";
-                        msg += parameters.get("component1_mass") + " g/L  |";
-                        msg += "  Maximum : ";
-                        msg += parameters.get("component2_mass") + " g/L |";
+                    msg += "Maximum : ";
+                    if(val1<val2){
+                        msg += parameters.get("component1_mass") + " g/L";
                     }
                     else{
-                        // Component1 is set to Maximum and component2 to Minimum
-                        msg += "Minimum : ";
-                        msg += parameters.get("component2_mass") + " g/L  |";
-                        msg += "  Maximum : ";
-                        msg += parameters.get("component1_mass") + " g/L |";
-                    }                    
+                        msg += parameters.get("component2_mass") + " g/L";
+                    }
+                }                    
 
-                    response.put(l[Integer.parseInt(parameters.get("component1_name"))], msg);
+                response.put(l[Integer.parseInt(parameters.get("component1_name"))], msg);
+            }
+            else{
+                String msg = "";
+
+                if(parameters.get("component1_order").equals("0")){
+                    // Component1 is set to Minimum and component2 to Maximum
+                    msg += "Minimum : ";
+                    msg += parameters.get("component1_mass") + " g/L  |";
+                    msg += "  Maximum : ";
+                    msg += parameters.get("component2_mass") + " g/L |";
                 }
+                else{
+                    // Component1 is set to Maximum and component2 to Minimum
+                    msg += "Minimum : ";
+                    msg += parameters.get("component2_mass") + " g/L  |";
+                    msg += "  Maximum : ";
+                    msg += parameters.get("component1_mass") + " g/L |";
+                }                    
+
+                response.put(l[Integer.parseInt(parameters.get("component1_name"))], msg);
             }
         }
         else{ 
@@ -246,7 +245,7 @@ public class ItemManagerImpl implements ItemManager {
                 msg += " AND";
             }
             if(parameters.get("component1_name").equals("0")){
-                msg += " (w.Magnesium + w.Calcium + w.Potassium + w.Sodium)";
+                msg += " (w.magnesium + w.calcium + w.potassium + w.sodium)";
             }
             else{
                 msg += " w." + l[Integer.parseInt(parameters.get("component1_name"))].toLowerCase();

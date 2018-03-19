@@ -56,9 +56,14 @@ a {
     text-decoration: none;
 }
 
-#search, #selection, #application{
+#search, #selection{
     display: block;
     margin: 30px;
+}
+
+#application{
+    display: block;
+    margin-bottom: 30px;
 }
 
 #search p{
@@ -94,36 +99,22 @@ a {
     text-align: center;
     padding: auto 10px;
     display: inline;
-    margin: 30px;
 }
 
-
-.chart .legend {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: start;
-  font-size: 12px;
+#table_choices{
+    display: block;
+    text-align: center;
 }
 
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+table{
+    margin: 0 auto 30px;
+    border-collapse: collapse;
 }
 
-.chart .label {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: end;
+table, th, td {
+    border: 1px solid black;
 }
 
-.bar:hover {
-  fill: brown;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+th, td {
+    padding: 5px;
 }

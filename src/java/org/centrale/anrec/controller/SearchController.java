@@ -6,9 +6,11 @@
 package org.centrale.anrec.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +45,8 @@ public class SearchController {
             HttpServletResponse response) throws Exception{
         ItemManager theItemManager = ItemManagerImpl.getInstance();
         HashMap<String, String> parameters = SearchController.getParameters(request);
-        HashMap<String, Integer> valid_parameters = new HashMap<>();
-        HashMap<String, String> choices = new HashMap<>();
+        HashMap<String, Integer> valid_parameters = new LinkedHashMap<>();
+        HashMap<String, String> choices = new LinkedHashMap<>();
         boolean prevalid = SearchController.checkForm(parameters, valid_parameters);
         
         boolean valid = (theItemManager.getParameterValues(parameters, valid_parameters, choices) && prevalid);
@@ -53,7 +55,6 @@ public class SearchController {
         if(valid && !(choices.isEmpty())){
             list = theItemManager.findByParameters(parameters, valid_parameters);
         }
-        
         
         ModelAndView result = new ModelAndView();
         
@@ -66,8 +67,8 @@ public class SearchController {
             } catch (Exception e) {
                     e.printStackTrace();
             }
-            result.addObject("parameters", json_choices);
             result.addObject("error", 1);
+            result.addObject("choices", URLEncoder.encode(json_choices, "UTF-8"));
         } 
         else if(choices.isEmpty()){
             result.setViewName("redirect: panel.water");
@@ -81,8 +82,8 @@ public class SearchController {
             } catch (Exception e) {
                     e.printStackTrace();
             }
-            result.addObject("parameters", json_choices);
             result.addObject("error", 2);
+            result.addObject("choices", URLEncoder.encode(json_choices, "UTF-8"));
         }
         else if(list.size()==1){
             Water w = (Water) list.toArray()[0];
@@ -121,8 +122,8 @@ public class SearchController {
      * @param request
      * @return 
      */
-    private static HashMap<String, String> getParameters(HttpServletRequest request){
-        HashMap<String, String> response = new HashMap<>();
+    private static LinkedHashMap<String, String> getParameters(HttpServletRequest request){
+        LinkedHashMap<String, String> response = new LinkedHashMap<>();
         String name = request.getParameter("name");
         response.put("name", name);
         
@@ -169,7 +170,6 @@ public class SearchController {
         else{
             response.put("country", -1);
             form_valid = false;
-            return form_valid;
         }
         
         Boolean[] component1 = checkValidComponent(
@@ -179,9 +179,10 @@ public class SearchController {
         if(!component1[0]){
             form_valid = false;
             response.put("component1", -1);
-            return form_valid;
         }
-        response.put("component1", (component1[1]) ? 1:0);
+        else{
+            response.put("component1", (component1[1]) ? 1:0);            
+        }
         
         Boolean[] component2 = checkValidComponent(
                                     parameters.get("component2_name"),
@@ -190,9 +191,10 @@ public class SearchController {
         if(!component2[0]){
             form_valid = false;
             response.put("component2", -1);
-            return form_valid;
         }
-        response.put("component2", (component2[1]) ? 1:0);
+        else{
+            response.put("component2", (component2[1]) ? 1:0);            
+        }
         
         return form_valid;
     } 

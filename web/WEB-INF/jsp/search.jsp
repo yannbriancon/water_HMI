@@ -39,6 +39,9 @@
             <input id="submit_form" type="submit" value="Rechercher">
         </div>
     </form:form>
+    <div id="table_choices">
+        <p>Voici les résultats de la recherche ci-dessous :</p>
+    </div>
     <form:form method="GET" action="panel.water">
     <div id="application">
         <input id="new_search" type="submit" value="Nouvelle recherche">
@@ -87,45 +90,40 @@
         var d3_values = d3_container.append("div")
             .attr("id", "d3_values")
             
-            
-            
+         
         d3_values.append("p")
                 .text("test");
             
-        
-        //Add the countries in the selection list
-        /*var countries = $/{countries};
-            
-        d3.selectAll("#select_country").selectAll()
-                .data(countries)
+        //Add table of the choices of the request
+        var choices = ${choices};
+        if(choices!=={}){
+            var table = d3.select("#table_choices")
+                        .append("table")
+                
+            var table_header = table.append("tr")
+                                .attr("id", "table_header")
+                        
+            var table_values = table.append("tr")
+                                .attr("id", "table_values")
+           
+            table_header.selectAll()
+                .data(d3.entries(choices))
                 .enter()
-                .append("option")
-                .attr("value", function(d) {
-                    return String(d['waterId']);   
-                })
+                .append("th")
                 .html(function(d) {
-                    return d['country']; 
+                    return unescape(d.key); 
                 })
                 
-        //Add the possible component filters in the component selection lists
-        var components = [{"id":1, "name":"Tous les minéraux"}, {"id":2, "name":"Calcium"}, {"id":3, "name":"Magnesium"}, 
-            {"id":4, "name":"Sodium"}, {"id":5, "name":"Potassium"}, {"id":6, "name":"Sulfate"}, {"id":7, "name":"Nitrate"}, 
-            {"id":8, "name":"Bicarbonate"}, {"id":9, "name":"Chlore"}];
-        d3.selectAll(".select_component").selectAll()
-                .data(components)
+            table_values.selectAll()
+                .data(d3.entries(choices))
                 .enter()
-                .append("option")
-                .attr("value", function(d) {
-                    return String(d['id']);   
-                })
+                .append("td")
                 .html(function(d) {
-                    return d['name']; 
+                    return unescape(d.value); 
                 })
-                */
+        }
+    </script>
 
-
-
-</script>
     <script>
         var coverflow = $("#coverflow").flipster();
         
