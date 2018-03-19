@@ -107,10 +107,10 @@
         var d3_values = d3_container.append("div")
             .attr("id", "d3_values")
             
-         
+      
         d3_values.append("p")
                 .text("test");
-            
+
         //Add error message if it exists
         var error = ${error};
         if(error!==""){
