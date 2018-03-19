@@ -68,12 +68,13 @@
                     return url;   
                 })
                 
-        var div = a.append("div")
+        var d3_container = a.append("div")
             .attr("class", "d3_container")
-            .append("div")
-            .attr("class", "d3")
-            
-        div.append("h1")
+        
+        var d3_header = d3_container.append("div")
+            .attr("id", "d3_header")
+    
+        d3_header.append("h1")
             .html(function(d) {
                 return d['name']; 
             })
@@ -82,9 +83,14 @@
             .html(function(d) {
                 return d['country']; 
             })
+    
+        var d3_values = d3_container.append("div")
+            .attr("id", "d3_values")
             
             
-        
+            
+        d3_values.append("p")
+                .text("test");
             
         
         //Add the countries in the selection list
@@ -116,10 +122,13 @@
                     return d['name']; 
                 })
                 */
-    </script>
 
+
+
+</script>
     <script>
         var coverflow = $("#coverflow").flipster();
+        
     </script>
 </body>
 </html>

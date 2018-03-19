@@ -37,7 +37,7 @@ div.bar {
     margin-right: 2px;
 }
 
-.d3 {
+#d3_header {
     margin: auto;
 }
 
@@ -45,6 +45,7 @@ div.bar {
     width: 600px;
     height: 300px;
     display: flex;
+    flex-direction: column;
     border-style: solid;
     border-width: 5px;
     background-color: white;
@@ -94,4 +95,35 @@ a {
     padding: auto 10px;
     display: inline;
     margin: 30px;
+}
+
+
+.chart .legend {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: start;
+  font-size: 12px;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.chart .label {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: end;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
