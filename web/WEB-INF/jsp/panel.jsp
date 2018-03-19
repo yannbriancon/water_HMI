@@ -87,21 +87,30 @@
                     return url;   
                 })
                 
-        var div = a.append("div")
+        var d3_container = a.append("div")
             .attr("class", "d3_container")
-            .append("div")
-            .attr("class", "d3")
-            
-        div.append("h1")
+        
+        var d3_header = d3_container.append("div")
+            .attr("id", "d3_header")
+    
+        d3_header.append("h1")
             .html(function(d) {
                 return d['name']; 
             })
-            .append("p")
+        
+        d3_header.append("p")
             .attr("class", "water_country")
             .html(function(d) {
                 return d['country']; 
             })
+    
+        var d3_values = d3_container.append("div")
+            .attr("id", "d3_values")
             
+      
+        d3_values.append("p")
+                .text("test");
+
         //Add error message if it exists
         var error = ${error};
         if(error!==""){

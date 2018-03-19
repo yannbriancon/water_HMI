@@ -37,7 +37,11 @@ div.bar {
     margin-right: 2px;
 }
 
-.d3 {
+#d3_header{
+    flex: 1;
+}
+
+#d3_header h1{
     margin: auto;
 }
 
@@ -45,6 +49,7 @@ div.bar {
     width: 600px;
     height: 300px;
     display: flex;
+    flex-direction: column;
     border-style: solid;
     border-width: 5px;
     background-color: white;
@@ -55,12 +60,12 @@ a {
     text-decoration: none;
 }
 
-#search, #selection{
+#selection{
     display: block;
     margin: 30px;
 }
 
-#search, #application{
+#application, #search{
     display: block;
     margin-bottom: 30px;
 }

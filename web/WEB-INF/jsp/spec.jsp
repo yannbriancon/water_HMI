@@ -27,24 +27,38 @@
 
     </head>
     <body>
-        <form:form method="POST" action="panel.water">
+        <script>
+            $(function () {
+                $('form#other_search').click(function (e) {
+                    e.preventDefault();
+                    var c = confirm("Si vous cliquez sur 'OK', vous perdrez les critères en cours. Si vous voulez retourner à la liste des eaux respectant vos critères, cliquez sur 'Annuler' puis sur l'icône précédent de votre navigateur.");
+                    if (c) {
+                        $('form#other_search').submit();
+                    }
+                });
+            });
+        </script>
+
+
+        <form id="other_search" method="POST" action="panel.water">
             <div id="application">
-                <input id="new_search" type="submit" value="Nouvelle recherche">
+                <input id="deletesubmit" type="submit" value="Nouvelle recherche" />
             </div>
-        </form:form>
-        
-        
+        </form>
+
+
         <script id="d3" type="text/javascript">
-            var dataset = ${waters};
-              
-           d3.select("body")
-                   .append("h1")
-                   .text(dataset[0].name + "  -  " + dataset[0].country);
-           
-           d3.select("body")
-                   .append("p")
-                   .text("Valeurs en mg/L")
-                   .style("color", "#cccc43");;
+               var dataset = ${waters};
+
+               d3.select("body")
+                       .append("h1")
+                       .text(dataset[0].name + "  -  " + dataset[0].country);
+
+               d3.select("body")
+                       .append("p")
+                       .text("Valeurs en mg/L")
+                       .style("color", "#cccc43");
+               ;
 
         </script>
 
