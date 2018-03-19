@@ -1,7 +1,7 @@
 html,
 body {
   margin: 0;
-  padding: 0;
+  padding-top: 20px;
   height: 100%;
 }
 
@@ -37,7 +37,11 @@ div.bar {
     margin-right: 2px;
 }
 
-#d3_header {
+#d3_header{
+    flex: 1;
+}
+
+#d3_header h1{
     margin: auto;
 }
 
@@ -56,12 +60,12 @@ a {
     text-decoration: none;
 }
 
-#search, #selection{
+#selection{
     display: block;
     margin: 30px;
 }
 
-#application{
+#application, #search{
     display: block;
     margin-bottom: 30px;
 }

@@ -81,7 +81,8 @@
             .html(function(d) {
                 return d['name']; 
             })
-            .append("p")
+        
+        d3_header.append("p")
             .attr("class", "water_country")
             .html(function(d) {
                 return d['country']; 
