@@ -127,19 +127,19 @@ public class ItemManagerImpl implements ItemManager {
                 if(parameters.get("component1_order").equals("0")){
                     msg += "Minimum : ";
                     if(val1>val2){
-                        msg += parameters.get("component1_mass") + " g/L";
+                        msg += parameters.get("component1_mass") + " mg/L";
                     }
                     else{
-                        msg += parameters.get("component2_mass") + " g/L";
+                        msg += parameters.get("component2_mass") + " mg/L";
                     }
                 }
                 else{
                     msg += "Maximum : ";
                     if(val1<val2){
-                        msg += parameters.get("component1_mass") + " g/L";
+                        msg += parameters.get("component1_mass") + " mg/L";
                     }
                     else{
-                        msg += parameters.get("component2_mass") + " g/L";
+                        msg += parameters.get("component2_mass") + " mg/L";
                     }
                 }                    
 
@@ -151,16 +151,16 @@ public class ItemManagerImpl implements ItemManager {
                 if(parameters.get("component1_order").equals("0")){
                     // Component1 is set to Minimum and component2 to Maximum
                     msg += "Minimum : ";
-                    msg += parameters.get("component1_mass") + " g/L  |";
+                    msg += parameters.get("component1_mass") + " mg/L  |";
                     msg += "  Maximum : ";
-                    msg += parameters.get("component2_mass") + " g/L";
+                    msg += parameters.get("component2_mass") + " mg/L";
                 }
                 else{
                     // Component1 is set to Maximum and component2 to Minimum
                     msg += "Minimum : ";
-                    msg += parameters.get("component2_mass") + " g/L  |";
+                    msg += parameters.get("component2_mass") + " mg/L  |";
                     msg += "  Maximum : ";
-                    msg += parameters.get("component1_mass") + " g/L";
+                    msg += parameters.get("component1_mass") + " mg/L";
                 }                    
 
                 response.put(l[Integer.parseInt(parameters.get("component1_name"))], msg);
@@ -185,7 +185,7 @@ public class ItemManagerImpl implements ItemManager {
                 else{
                     msg += "Maximum : ";
                 }
-                msg += parameters.get("component1_mass") + " g/L";
+                msg += parameters.get("component1_mass") + " mg/L";
 
                 response.put(l[Integer.parseInt(parameters.get("component1_name"))], msg);
 
@@ -206,7 +206,7 @@ public class ItemManagerImpl implements ItemManager {
                 else{
                     msg += "Maximum : ";
                 }
-                msg += parameters.get("component2_mass") + " g/L";
+                msg += parameters.get("component2_mass") + " mg/L";
 
                 response.put(l[Integer.parseInt(parameters.get("component2_name"))], msg);
 

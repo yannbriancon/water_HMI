@@ -53,12 +53,12 @@ public class PanelController {
             }
         }
         else{
-            error = "";
+            error = null;
         }
         
         String json_choices = request.getParameter("choices");
         if(json_choices == null){
-            json_choices = "{}";
+            json_choices = "null";
         }
         else{
             json_choices = URLDecoder.decode(json_choices, "UTF-8");

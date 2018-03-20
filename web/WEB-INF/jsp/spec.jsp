@@ -25,159 +25,23 @@
         <script src="js/d3.min.js"></script>    
         <script src="js/d3pie.min.js"></script>
 
+        <script type="text/javascript" src="js/spec.js"></script>
+        
     </head>
     <body>
-        <script>
-            $(function () {
-                $('form#other_search').click(function (e) {
-                    e.preventDefault();
-                    var c = confirm("Si vous cliquez sur 'OK', vous perdrez les critères en cours. Si vous voulez retourner à la liste des eaux respectant vos critères, cliquez sur 'Annuler' puis sur l'icône précédent de votre navigateur.");
-                    if (c) {
-                        $('form#other_search').submit();
-                    }
-                });
-            });
-        </script>
-
-
-        <form id="other_search" method="POST" action="panel.water">
+        <form:form id="other_search" method="POST" action="panel.water">
             <div id="application">
                 <input id="deletesubmit" type="submit" value="Nouvelle recherche" />
             </div>
-        </form>
+        </form:form>
 
-
-        <script id="d3" type="text/javascript">
-               var dataset = ${waters};
-
-               d3.select("body")
-                       .append("h1")
-                       .text(dataset[0].name + "  -  " + dataset[0].country);
-
-               d3.select("body")
-                       .append("p")
-                       .text("Valeurs en mg/L")
-                       .style("color", "#cccc43");
-               ;
-
-        </script>
-
-        <div id="pieChart"></div>
-
-
+        <div id="water_spec">
+            <div id="pieChart"></div>
+        </div>
+        
         <script>
-            var data = ${waters};
-            var pie = new d3pie("pieChart", {
-                "header": {
-                    "title": {
-                        "text": "Teneur totale en sels minéraux",
-                        "fontSize": 12,
-                        "font": "courier"
-                    },
-                    "subtitle": {
-                        "text": data[0].calcium + data[0].magnesium + data[0].sodium + data[0].potassium,
-                        "color": "#cccc43",
-                        "fontSize": 10,
-                        "font": "courier"
-                    },
-                    "location": "pie-center",
-                    "titleSubtitlePadding": 10
-                },
-                "footer": {
-                    "text": "Les valeurs sont données à titre indicatif, il se peut que les réelles teneurs en sels minéraux diffèrent.",
-                    "color": "#999999",
-                    "fontSize": 10,
-                    "font": "open sans",
-                    "location": "bottom-center"
-                },
-                "size": {
-                    "canvasWidth": 590,
-                    "pieInnerRadius": "82%",
-                    "pieOuterRadius": "70%"
-                },
-                "data": {
-                    "sortOrder": "label-desc",
-                    "content": [
-                        {
-                            "label": "Calcium",
-                            "value": data[0].calcium,
-                            "color": "#1565c0"
-                        },
-                        {
-                            "label": "Magnésium",
-                            "value": data[0].magnesium,
-                            "color": "#1976d2"
-                        },
-                        {
-                            "label": "Sodium",
-                            "value": data[0].sodium,
-                            "color": "#1e88e5"
-                        },
-                        {
-                            "label": "Potassium",
-                            "value": data[0].potassium,
-                            "color": "#2196f3"
-                        },
-                        {
-                            "label": "Nitrate",
-                            "value": data[0].nitrate,
-                            "color": "#42a5f5"
-                        },
-                        {
-                            "label": "Sulfate",
-                            "value": data[0].sulfate,
-                            "color": "#64b5f6"
-                        },
-                        {
-                            "label": "Bicarbonate",
-                            "value": data[0].bicarbonate,
-                            "color": "#bbdefb"
-                        },
-                        {
-                            "label": "Chlore",
-                            "value": data[0].chlore,
-                            "color": "#90caf9"
-                        }
-                    ]
-                },
-                "labels": {
-                    "outer": {
-                        "format": "label-value2",
-                        "pieDistance": 20
-                    },
-                    "mainLabel": {
-                        "fontSize": 11
-                    },
-                    "percentage": {
-                        "color": "#1b5e20",
-                        "fontSize": 11,
-                        "decimalPlaces": 0
-                    },
-                    "value": {
-                        "color": "#cccc43",
-                        "fontSize": 11
-                    },
-                    "lines": {
-                        "enabled": true,
-                        "color": "#777777"
-                    },
-                    "truncation": {
-                        "enabled": true
-                    }
-                },
-                "effects": {
-                    "pullOutSegmentOnClick": {
-                        "effect": "linear",
-                        "speed": 400,
-                        "size": 8
-                    }
-                },
-                "misc": {
-                    "colors": {
-                        "segmentStroke": "#000000"
-                    }
-                }
-            });
+            d3Spec(${waters});
+            popUp();
         </script>
     </body>
 </html>

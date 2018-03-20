@@ -38,18 +38,23 @@ div.bar {
 }
 
 #d3_header{
-    margin: 20px 30px;
+    padding: 20px 30px 40px;
+    border-bottom: 2px solid black;
     flex: 1;
 }
 
 #d3_header h1{
     margin: auto;
     padding-bottom: 20px;
+    text-decoration: underline;
+}
+
+#d3_values{
+    padding: 40px 0;
 }
 
 .d3_container {
     width: 600px;
-    height: 300px;
     display: flex;
     flex-direction: column;
     border-style: solid;
@@ -123,4 +128,8 @@ table, th, td {
 
 th, td {
     padding: 5px;
+}
+
+#pieChart{
+    padding: 0;
 }

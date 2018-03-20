@@ -22,6 +22,8 @@
     <script type="text/javascript" src="js/d3.v3.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.flipster.js"></script>
+    
+    <script type="text/javascript" src="js/base.js"></script>
 
 </head>
 <body>
@@ -43,16 +45,18 @@
         <p>Voici les résultats de la recherche ci-dessous :</p>
     </div>
     <form:form method="GET" action="panel.water">
-    <div id="application">
-        <input id="new_search" type="submit" value="Nouvelle recherche">
-    </div>
+        <div id="application">
+            <input id="new_search" type="submit" value="Nouvelle recherche">
+        </div>
     </form:form>
     <div id="coverflow">
         <ul class="flip-items">
         </ul>
     </div>
     
-    <script type="text/javascript" src="js/base.js"></script>
+    <script>
+        d3Base(${waters}, ${choices});
+    </script>
 
     <script>
         var coverflow = $("#coverflow").flipster();

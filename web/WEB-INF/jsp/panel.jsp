@@ -23,7 +23,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.flipster.js"></script>
     
-    
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+   
     <script type="text/javascript" src="js/base.js"></script>
     <script type="text/javascript" src="js/panel.js"></script>
 
@@ -71,6 +72,11 @@
         <ul class="flip-items">
         </ul>
     </div>
+    
+    <script>
+        d3Base(${choices});
+        d3Panel(${waters}, ${countries}, ${error});
+    </script>
 
     <script>
         var coverflow = $("#coverflow").flipster();
