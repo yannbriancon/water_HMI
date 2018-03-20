@@ -23,7 +23,10 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.flipster.js"></script>
     
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    
     <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
 
 </head>
 <body>
@@ -55,7 +58,10 @@
     </div>
     
     <script>
-        d3Base(${waters}, ${choices});
+        d3Base(${choices});
+        var component1 = {"name": "${component1_name}", "order": "${component1_order}", "mass": "${component1_mass}"};
+        var component2 = {"name": "${component2_name}", "order": "${component2_order}", "mass": "${component2_mass}"};
+        d3Search(${waters}, component1, component2);
     </script>
 
     <script>

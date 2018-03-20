@@ -130,6 +130,9 @@ th, td {
     padding: 5px;
 }
 
-#pieChart{
-    padding: 0;
+#water_spec{
+    width: 700px;
+    margin: auto;
+    padding: 20px 0;
+    border: solid 5px black;
 }

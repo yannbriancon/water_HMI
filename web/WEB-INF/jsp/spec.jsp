@@ -29,6 +29,7 @@
         
     </head>
     <body>
+        <p>La recherche a retourné comme résultat l'eau ci-dessous :</p>
         <form:form id="other_search" method="POST" action="panel.water">
             <div id="application">
                 <input id="deletesubmit" type="submit" value="Nouvelle recherche" />

@@ -135,8 +135,6 @@ function d3Panel(waters, countries, error){
     var x = d3.scaleLinear()
         .rangeRound([margin.left, width - margin.right]);
 
-    x.domain([0, valMaxMineraux(waters)]);
-
     var y = d3.scaleBand()
         .rangeRound([height - margin.bottom, margin.top])
         .padding(0.1);
@@ -154,42 +152,31 @@ function d3Panel(waters, countries, error){
     var g2 = maing.append("g")
         .attr("fill", z(group[2]));
 
-    var data0 = {};
-    data0["key"] = group[0];
-    data0["value"] = valMinMineraux(waters);
+    var valmin = valMinKey(waters, "tous les minéraux");
+    var valmax = valMaxKey(waters, "tous les minéraux");
+    
+    x.domain([0, valmax]);
 
     g0.append("rect")
-        .attr("data", JSON.stringify(data0))
-        .attr("width", x(data0["value"]) - x(0))
+        .attr("width", x(valmin) - x(0))
         .attr("x", x(0))
         .attr("y", y(0))
         .attr("height", y.bandwidth);
 
     g1.append("rect")
-        .attr("data", function(d) {
-            var data = {};
-            data["key"] = group[1];
-            data["value"] = d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'];
-            return JSON.stringify(data);;
-        })
         .attr("width", function(d){
-            return x(d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium']) - x(data0["value"])
+            return x(valKey(d, "tous les minéraux")) - x(valmin)
         })
-        .attr("x", x(data0["value"]))
+        .attr("x", x(valmin))
         .attr("y", y(0))
         .attr("height", y.bandwidth);
 
-    var data2 = {};
-    data2["key"] = group[2];
-    data2["value"] = valMaxMineraux(waters);
-
     g2.append("rect")
-        .attr("data", JSON.stringify(data2))
         .attr("width", function(d){
-            return x(data2["value"]) - x(d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'])
+            return x(valmax) - x(valKey(d, "tous les minéraux"))
         })
         .attr("x", function(d){
-            return x(d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'])
+            return x(valKey(d, "tous les minéraux"))
         })
         .attr("y", y(0))
         .attr("height", y.bandwidth);
@@ -220,40 +207,31 @@ function d3Panel(waters, countries, error){
     g2 = maing.append("g")
         .attr("fill", z(group[2]));
 
-    data0["key"] = group[0];
-    data0["value"] = valMinKey(waters, "bicarbonate");
+    valmin = valMinKey(waters, "bicarbonate");
+    valmax = valMaxKey(waters, "bicarbonate");
 
+    x.domain([0, valmax]);
+    
     g0.append("rect")
-        .attr("data", JSON.stringify(data0))
-        .attr("width", x(data0["value"]) - x(0))
+        .attr("width", x(valmin) - x(0))
         .attr("x", x(0))
         .attr("y", y(0))
         .attr("height", y.bandwidth);
 
     g1.append("rect")
-        .attr("data", function(d) {
-            var data = {};
-            data["key"] = group[1];
-            data["value"] = d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'];
-            return JSON.stringify(data);;
-        })
         .attr("width", function(d){
-            return x(d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium']) - x(data0["value"])
+            return x(valKey(d, "bicarbonate")) - x(valmin);
         })
-        .attr("x", x(data0["value"]))
+        .attr("x", x(valmin))
         .attr("y", y(0))
         .attr("height", y.bandwidth);
 
-    data2["key"] = group[2];
-    data2["value"] = valMaxKey(waters, "bicarbonate");
-
     g2.append("rect")
-        .attr("data", JSON.stringify(data2))
         .attr("width", function(d){
-            return x(data2["value"]) - x(d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'])
+            return x(valmax) - x(valKey(d, "bicarbonate"));
         })
         .attr("x", function(d){
-            return x(d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'])
+            return x(valKey(d, "bicarbonate"));
         })
         .attr("y", y(0))
         .attr("height", y.bandwidth);
@@ -271,26 +249,36 @@ function d3Panel(waters, countries, error){
         .text("Masse (mg/L)");
 }
 
-function valMinMineraux(waters) {
-    return d3.min(waters, function(d) {
-        return d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'];
-    });
-}
-
-function valMaxMineraux(waters) {
-    return d3.max(waters, function(d) {
-        return d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'];
-    });
+function valKey(water, key) {
+    key = key.toLowerCase();
+    if(key==="tous les minéraux"){
+        return water['magnesium'] + water['sodium'] + water['potassium'] + water['calcium'];
+    }
+    else{
+        return water[key];
+    }
 }
 
 function valMinKey(waters, key) {
     return d3.min(waters, function(d) {
-        return d[key];
+        key = key.toLowerCase();
+        if(key==="tous les minéraux"){
+            return d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'];
+        }
+        else{
+            return d[key];
+        }
     });
 }
 
 function valMaxKey(waters, key) {
     return d3.max(waters, function(d) {
-        return d[key];
+        key = key.toLowerCase();
+        if(key==="tous les minéraux"){
+            return d['magnesium'] + d['sodium'] + d['potassium'] + d['calcium'];
+        }
+        else{
+            return d[key];
+        }
     });
 }
