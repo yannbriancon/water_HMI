@@ -48,7 +48,7 @@
             </select>
             <div class="component_div">
                 <input class="component_text" type="text" name="component1_mass" value="" maxlength="4">
-                g/L
+                mg/L
             </div>
             <select class="select_component" name="component2_name">
                 <option value="-1">Composant</option>
@@ -59,7 +59,7 @@
             </select>
             <div class="component_div">
                 <input class="component_text" type="text" name="component2_mass" value="" maxlength="4">
-                g/L
+                mg/L
             </div>
         </div>
         <div id="application">

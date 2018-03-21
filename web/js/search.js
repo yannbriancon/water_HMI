@@ -515,7 +515,7 @@ function d3Search(waters, component1, component2) {
                     .attr("id", "snd_chart");
 
             snd_chart.append("h1")
-                    .html("Bicarbonate");
+                    .html(key);
 
             var svg2 = snd_chart.append("svg")
                     .attr("id", "svg2")
