@@ -74,13 +74,13 @@
     </div>
     
     
-        "footer": {
+       <!-- "footer": {
             "text": "Les valeurs sont données à titre indicatif, il se peut que les teneurs réelles diffèrent.",
             "color": "#999999",
             "fontSize": 10,
             "font": "open sans",
             "location": "bottom-center"
-        },
+        },-->
     
     <script>
         d3Base(${choices});
@@ -90,5 +90,8 @@
     <script>
         var coverflow = $("#coverflow").flipster();
     </script>
+    <footer>
+        <p>Les valeurs sont données à titre indicatif, il se peut que les teneurs réelles diffèrent.</p>
+    </footer>
 </body>
 </html>

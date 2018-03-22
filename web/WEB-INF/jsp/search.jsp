@@ -68,5 +68,8 @@
         var coverflow = $("#coverflow").flipster();
         
     </script>
+    <footer>
+        <p>Les valeurs sont données à titre indicatif, il se peut que les teneurs réelles diffèrent.</p>
+    </footer>
 </body>
 </html>
